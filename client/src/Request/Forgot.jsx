@@ -36,7 +36,7 @@ function Placeholder({ texts }) {
           confirmButtonText: "Ok",
           html: "You will redirected to Login page <br>Thank you!",
         }).then(function () {
-          window.location = "/monitoring/login";
+          window.location = "/login";
         });
         setSuccess(response.data.message);
         setError("");

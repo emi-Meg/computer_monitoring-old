@@ -47,7 +47,7 @@ const PrintInformation = () => {
 
   useEffect(() => {
     const handleAfterPrint = () => {
-      window.location.href = "/monitoring/computers";
+      window.location.href = "/computers";
     };
 
     window.onload = () => {

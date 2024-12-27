@@ -1,0 +1,59 @@
+
+services:
+  computer-react:
+    container_name: computer-client
+    restart: unless-stopped
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - "9001:9001"
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+      - ./client/src:/app/src 
+    stdin_open: true
+    tty: true
+
+  computer-monitoring:
+    build:
+      context: ./back
+      dockerfile: Dockerfile
+    image: computer-monitoring
+    container_name: computer-server
+    restart: unless-stopped
+    working_dir: /var/www/
+    volumes:
+      - ./back/storage:/var/www/storage
+      - ./back/bootstrap/cache:/var/www/bootstrap/cache
+      - ./back/:/var/www
+      - ./back/docker-compose/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - computer
+    environment:
+      DB_CONNECTION: mysql
+      DB_HOST: 172.17.0.1  # Replace with your host's IP if necessary
+      DB_PORT: 3306
+      DB_DATABASE: computer_monitoring
+      DB_USERNAME: smct
+      DB_PASSWORD: smct
+
+
+  computer-nginx:
+    image: nginx:alpine
+    container_name: computer-nginx
+    restart: unless-stopped
+    ports:
+      - 9002:9002
+    volumes:
+      - ./back/docker-compose/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./back/:/var/www
+    networks:
+      - computer
+
+volumes:
+  computer_data:
+
+networks:
+  computer:
+    driver: bridge

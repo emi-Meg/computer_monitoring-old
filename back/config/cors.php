@@ -18,7 +18,8 @@ return [
     'paths' => ['api/*', 'sanctum/csrf-cookie'],
 
     'allowed_methods' => ['*'],
-    'allowed_origins' => ['http://136.239.196.178:5000', 'https://desstrongmotors.com/monitoring', 'http://localhost:5000'],
+
+    'allowed_origins' => ['*'],
 
     'allowed_origins_patterns' => [],
 

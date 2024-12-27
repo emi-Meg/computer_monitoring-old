@@ -91,7 +91,7 @@ function Reset() {
           confirmButtonText: "Ok",
           html: "You will redirected to Dashboard <br>Thank you!",
         }).then(function () {
-          window.location = "/monitoring/dashboard";
+          window.location = "/dashboard";
         });
       }
       console.log("Password reset successful: ", response.data);

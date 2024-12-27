@@ -29,7 +29,7 @@ function SideBar({ isSidebarOpen, toggleSidebar }) {
   const { isAdmin } = useAdmin();
 
   useEffect(() => {
-    const hashPath = window.location.pathname.replace("/monitoring", "");
+    const hashPath = window.location.pathname.replace("", "");
     switch (hashPath) {
       case "/dashboard":
         setActiveItem("dashboard");

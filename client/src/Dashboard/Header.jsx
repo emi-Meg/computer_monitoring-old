@@ -122,7 +122,7 @@ function Header({ toggleSidebar, isRefresh, title }) {
             confirmButtonText: "Go to login page",
             html: "Session Expired, You will be redirected to the Login page <br>Thank you!",
           }).then(() => {
-            window.location = "/monitoring/login";
+            window.location = "/login";
           });
         }
       } finally {
@@ -168,7 +168,7 @@ function Header({ toggleSidebar, isRefresh, title }) {
         localStorage.removeItem("user");
         localStorage.removeItem("token");
         localStorage.removeItem("profileImg");
-        window.location = "/monitoring/login";
+        window.location = "/login";
       } catch (error) {
         console.error("Error logging out:", error);
         Swal.fire("Error!", "Failed to log out. Please try again.", "error");
